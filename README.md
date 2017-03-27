@@ -38,3 +38,4 @@ Running the application image is as simple as invoking the docker run command:
 ```
 docker run -it --rm **imageName** /bin/bash
 ```
+#### Then you will need to push your image to DockerIO
