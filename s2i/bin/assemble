@@ -16,11 +16,27 @@ fi
 #
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
-  mv /tmp/artifacts/. ./
+  mv /tmp/artifacts/. /tmp/src/
 fi
 
-echo "---> Installing application source..."
-cp -Rf /tmp/src/. ./
+WORKDIR=$PWD;
+echo "Final destination : $PWD"
+echo "switching to source folder"
+cd /tmp/src
+#echo "---> Installing application source..."
+#cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
 swift build --configuration release
+
+echo "Build finish"
+cp .build/release/App $WORKDIR/
+cp .build/release/*.so $WORKDIR/
+cp .build/release/*.swiftdoc $WORKDIR/
+cp .build/release/*.swiftmodule $WORKDIR/
+
+#echo "Removing sources"
+#rm -Rf /tmp/src
+
+echo "Switching to working dir : $WORKDIR"
+cd $WORKDIR

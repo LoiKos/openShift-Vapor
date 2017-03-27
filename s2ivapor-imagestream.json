@@ -1,0 +1,30 @@
+{
+  "kind": "ImageStream",
+  "apiVersion": "v1",
+  "metadata": {
+  "name": "s2ivapor",
+  "annotations": {
+    "openshift.io/display-name": "Swift Vapor"
+    }
+  },
+  "spec": {
+    "dockerImageRepository": "docker.io/loikos/s2ivapor",
+    "tags": [
+       {
+        "name": "latest",
+        "from": {
+          "kind": "DockerImage",
+          "name": "docker.io/loikos/s2ivapor"
+        },
+        "annotations": {
+          "openshift.io/display-name": "S2I to build VApor Swift backend",
+          "description": "S2I to build VApor Swift backend",
+          "iconClass": "icon-git",
+          "tags": "builder,swift vapor",
+          "supports":"swift, vapor",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  }
+}
